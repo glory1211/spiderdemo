@@ -36,7 +36,9 @@ def get_UA():
     headers = {'User-agent': this_ua}
     print('当前使用的headers：' + str(headers))
 
-
+    
+# 一、分析目标网站并准备目标url
+    
 def get_url(i):
     '''
     获取目标网站url
@@ -50,7 +52,7 @@ def get_url(i):
     return url_list
 
 
-# 一、下载所有页面的HTML
+# 二、下载单个页面的HTML
 
 def download_single_html(url):
     '''
@@ -65,6 +67,8 @@ def download_single_html(url):
     html = response.text
     return html
 
+
+# 三、解析单个页面的HTML
 
 def parse_single_html(html):
     '''
@@ -87,6 +91,8 @@ def parse_single_html(html):
     return data
 
 
+# 四、保存数据到本地
+
 def save_simplejson(data):
     '''
     将数据保存到本地
@@ -94,7 +100,7 @@ def save_simplejson(data):
     :return:
     '''
     print("保存中...")
-    with open("all_article_links优化版3.json", "a") as f:
+    with open("all_article_links优化版.json", "a") as f:
         for dat in data:
             f.write(simplejson.dumps(dat, ensure_ascii=False) + "\n")
         print("保存成功！")
@@ -109,6 +115,6 @@ def run():
         save_simplejson(data)
 
 
-# if __name__ == '__main__':
-url_list = get_url(27)
-run()
+if __name__ == '__main__':
+    url_list = get_url(27)
+    run()
